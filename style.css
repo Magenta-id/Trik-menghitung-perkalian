@@ -151,6 +151,7 @@ h3 {
 }
 
 .gambar {
+  border-radius: 6px;
   display: block;
   height: auto;
   margin: 0 auto;
