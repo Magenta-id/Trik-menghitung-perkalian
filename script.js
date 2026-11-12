@@ -1,6 +1,3 @@
-alert("JS Terhubung dengan Sukses!");
-// tes koneksi
-
 // Nonaktifkan pemulihan posisi scroll otomatis browser
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
