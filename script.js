@@ -1,48 +1,4 @@
-// Nonaktifkan pemulihan posisi scroll otomatis browser
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
-  // Jika URL mengandung hash (#), bersihkan hash tanpa reload halaman
-  if (window.location.hash) {
-    history.replaceState(null, null, window.location.pathname + window.location.search);
-  }
-
-  // Langsung reset posisi layar ke paling atas sebelum konten selesai dirender
-  window.scrollTo(0, 0);
-
-// Mengambil elemen tombol berdasarkan ID
-const btnBackToTop = document.getElementById("btnBackToTop");
-
-// Menampilkan tombol hanya jika halaman di-scroll ke bawah sejauh 300px
-window.onscroll = function () {
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    btnBackToTop.style.display = "block";
-  } else {
-    btnBackToTop.style.display = "none";
-  }
-};
-
-// Fungsi untuk menggulir halaman kembali ke paling atas secara halus saat tombol diklik
-btnBackToTop.addEventListener("click", function () {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-
-// Memastikan semua format math bekerja setelah HTML dimuat
-window.addEventListener('load', function () {
-  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
-    MathJax.typesetPromise().catch(function (err) {
-      console.log('MathJax error: ' + err.message);
-    });
-  }
-});
-
-// Kuis
-
-document.addEventListener("DOMContentLoaded", function () {
+window.initBkQuiz = function () {
   // State Pengaturan
   const config = {
     num1: { min: 1, max: 9, isCustom: false },
@@ -70,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const feedbackDesc = document.getElementById("bk-feedback-desc");
   const hintBox = document.getElementById("bk-hint-box");
 
+  // Jika elemen kuis belum ada di halaman, hentikan agar tidak error
+  if (!setupView) return;
+
   // Handler Pilihan Range (Num 1 & Num 2)
   document.querySelectorAll(".bk-pill-group[data-target]").forEach(group => {
     const target = group.getAttribute("data-target");
@@ -96,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Handler Pilihan Jenis Soal & Mode Jawaban
   function setupSinglePillGroup(groupId, configKey) {
     const group = document.getElementById(groupId);
+    if (!group) return;
     group.querySelectorAll(".bk-pill").forEach(btn => {
       btn.addEventListener("click", () => {
         group.querySelectorAll(".bk-pill").forEach(b => b.classList.remove("active"));
@@ -155,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const lastDigitA = a % 10;
     const lastDigitB = b % 10;
-    if (lastDigitA === 1 || lastDigitA === 9 || lastDigitB === 1 || lastDigitB === 9) {
+    if (lastDigitA === 1 || lastDigitA === 9 || lastDigitB === 1 || lastDigitB === 1) {
       return `💡 <strong>Petunjuk Sifat Distributif (Pembulatan):</strong> Bulatkan angka yang dekat dengan puluhan terdekat (misal ke kelipatan 10), kalikan, lalu tambah atau kurangi dengan selisihnya.`;
     }
     return `💡 <strong>Petunjuk Metode Gasing / Distributif:</strong> Pecah angka berdasarkan nilai tempatnya (ratusan, puluhan, satuan), kalikan secara bertahap dari nilai terbesar ke terkecil, lalu jumlahkan hasilnya.`;
@@ -168,14 +128,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const offsetType = getRandomInt(1, 3);
       let distractor = correct;
       if (offsetType === 1) {
-        // Beda puluhan/ratusan kecil
         const step = correct > 100 ? 10 : 2;
         distractor = correct + (getRandomInt(-3, 3) * step);
       } else if (offsetType === 2) {
-        // Beda satuan
         distractor = correct + getRandomInt(-5, 5);
       } else {
-        // Selisih sekitar 10%
         const delta = Math.max(1, Math.floor(correct * 0.1));
         distractor = correct + (Math.random() > 0.5 ? delta : -delta);
       }
@@ -188,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Generate Soal Baru
   function generateQuestion() {
-    // Reset tampilan feedback
     feedbackBox.classList.add("hidden");
     feedbackBox.classList.remove("success", "error");
     hintBox.classList.add("hidden");
@@ -197,7 +153,6 @@ document.addEventListener("DOMContentLoaded", function () {
     essayInput.disabled = false;
     checkBtn.disabled = false;
 
-    // Ambil min-max valid
     let min1 = config.num1.isCustom ? parseInt(document.getElementById("num1-min").value, 10) || 1 : config.num1.min;
     let max1 = config.num1.isCustom ? parseInt(document.getElementById("num1-max").value, 10) || 10 : config.num1.max;
     let min2 = config.num2.isCustom ? parseInt(document.getElementById("num2-min").value, 10) || 1 : config.num2.min;
@@ -210,7 +165,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const b = getRandomInt(min2, max2);
     currentQ = { a, b, answer: a * b };
 
-    // Tentukan tipe soal (Polos / Cerita)
     let activeType = config.qType;
     if (activeType === "mixed") {
       activeType = Math.random() > 0.5 ? "plain" : "story";
@@ -224,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
       questionText.innerHTML = buildStoryQuestion(a, b);
     }
 
-    // Tampilkan Area Jawaban sesuai mode
     if (config.aMode === "essay") {
       essayArea.classList.remove("hidden");
       mcArea.classList.add("hidden");
@@ -265,7 +218,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (clickedBtn) {
         clickedBtn.classList.add("wrong");
-        // Tandai tombol yang benar
         mcArea.querySelectorAll(".bk-mc-option").forEach(btn => {
           if (parseInt(btn.textContent.replace(/\./g, ""), 10) === currentQ.answer) {
             btn.classList.add("correct");
@@ -273,11 +225,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     }
-
     nextBtn.classList.remove("hidden");
   }
 
-  // Handler Submit Essay
   checkBtn.addEventListener("click", () => {
     const raw = essayInput.value.trim();
     if (raw === "") return;
@@ -293,13 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Handler Submit Pilihan Ganda
   function handleMcAnswer(btn, val) {
     mcArea.querySelectorAll(".bk-mc-option").forEach(b => (b.disabled = true));
     evaluateAnswer(val, btn);
   }
 
-  // Navigasi Layar
   startBtn.addEventListener("click", () => {
     setupView.classList.add("hidden");
     practiceView.classList.remove("hidden");
@@ -312,4 +260,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   nextBtn.addEventListener("click", generateQuestion);
-});
+};
+
+// Auto-run jika file dibuka langsung
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function() {
+    if (typeof window.initBkQuiz === "function") window.initBkQuiz();
+  });
+} else {
+  if (typeof window.initBkQuiz === "function") window.initBkQuiz();
+}
