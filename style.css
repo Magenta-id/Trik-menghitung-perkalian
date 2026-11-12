@@ -384,3 +384,322 @@ h3.catatan {
 }
 
 /* Batas */
+
+/* Sintaks game */
+
+.bk-quiz-box {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 24px;
+  margin: 32px auto;          /* Mengatur jarak atas-bawah dan membuat kotak berada di tengah */
+  max-width: 650px;           /* Membatasi lebar maksimal agar tidak terlalu lebar di layar besar */
+  width: 92%;                 /* Lebar aman di HP (menyisakan sedikit ruang di sisi kiri-kanan) */
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+  text-align: left;
+  color: #1e293b;
+  box-sizing: border-box;
+}
+
+
+.bk-quiz-box * {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Header */
+.bk-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 14px;
+}
+
+.bk-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bk-title {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.bk-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Controls & Pills */
+.bk-control-group {
+  margin-bottom: 18px;
+}
+
+.bk-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.bk-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bk-pill {
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  padding: 7px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bk-pill:hover {
+  border-color: #94a3b8;
+  background: #f1f5f9;
+}
+
+.bk-pill.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.bk-custom-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+}
+
+.bk-custom-range input {
+  width: 100px;
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.bk-custom-range span {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Buttons */
+.bk-btn-primary {
+  width: 100%;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 6px;
+}
+
+.bk-btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.bk-btn-secondary {
+  width: 100%;
+  background: #0f172a;
+  color: #ffffff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: background 0.2s ease;
+}
+
+.bk-btn-secondary:hover {
+  background: #334155;
+}
+
+.bk-btn-link {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.bk-btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Practice Area */
+.bk-practice-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.bk-badge-subtle {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.bk-question-card {
+  background: #f8fafc;
+  border-left: 4px solid #2563eb;
+  padding: 18px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+
+.bk-question-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.bk-question-text strong {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+/* Essay Input */
+.bk-input-answer {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 16px;
+  border: 2px solid #cbd5e1;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.bk-input-answer:focus {
+  border-color: #2563eb;
+}
+
+/* Multiple Choice Grid */
+.bk-mc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.bk-mc-option {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.bk-mc-option:hover:not(:disabled) {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.bk-mc-option.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #15803d;
+}
+
+.bk-mc-option.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #b91c1c;
+}
+
+/* Feedback & Smart Hint */
+.bk-feedback {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.bk-feedback.success {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+
+.bk-feedback.error {
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+  color: #991b1b;
+}
+
+.bk-feedback-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.bk-feedback-desc {
+  margin: 0;
+}
+
+.bk-hint {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(185, 28, 28, 0.25);
+  color: #7f1d1d;
+  font-size: 13.5px;
+}
+
+@media (max-width: 480px) {
+  .bk-quiz-box {
+    padding: 18px;
+  }
+  .bk-mc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
