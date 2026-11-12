@@ -56,6 +56,7 @@
               <li><a href="#Angka_kembar">Mengalikan Dua angka kembar/Kuadrat</a></li>
               <li><a href="#distributif">Sifat Distributif atau Teknik Pembulatan</a></li>
               <li><a href="#gasing">Metode Gasing (Gampang, Asyik, dan Menyenangkan)</a></li>
+              <li><a href="#kuis">​💡 Uji Pemahaman: Latihan Tanpa Beban</a></li>
             </ol>
           </div>
 
@@ -754,6 +755,113 @@ Sebelum masuk ke praktek, kita harus memahami konsep perkalian basis 10:</p>
 
         <img class="gambar" data-original-height="912" data-original-width="1147" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiE1ay3hn9Y0kJrnLA5eYHnXE9tM2XutQ6Win-AqdotW7NIRdZCskj4zmUwFvCoqJ0UmC94vZ2zpa7aXl0DaHZC1OZxYPabTNfCZSf46avZTWPbVRv_ciW3F-AZDuuO4K9gPEFybVJhlsu324ZT4B10OTEMUca2VxbH3XHKhLbgb79Xze_ti2Dm_Qr14HWL/s1600/1785743494872.png" title="gasing_2" alt="123 × 456"/>
 
+      </section>
+
+      <section id="kuis">
+        <h2 class="judul_Materi">​💡 Uji Pemahaman: Latihan Tanpa Beban</h2>
+
+        <p>Teori sudah dibaca, sekarang saatnya melatih refleks otakmu! Jangan khawatir, kuis ini dirancang santai—<em>tanpa timer dan tanpa sistem skor</em>—jadi kamu bisa fokus menikmati proses menghitung.</p>
+
+        <!-- kuis -->
+
+        <div id="bk-quiz-wrapper" class="bk-quiz-box">
+        <!-- TAMPILAN 1: PENGATURAN LATIHAN -->
+          <div id="bk-setup-view" class="bk-view">
+            <div class="bk-header">
+              <span class="bk-badge">Latihan Interaktif</span>
+              <h3 class="bk-title">Uji Trik Perkalian Cepat</h3>
+              <p class="bk-subtitle">Atur tingkat kesulitan dan jenis soal sesuai keinginanmu.</p>
+            </div>
+
+          <!-- Pengaturan Angka Pertama -->
+          <div class="bk-control-group">
+            <label class="bk-label">Rentang Angka Pertama</label>
+            <div class="bk-pill-group" data-target="num1">
+              <button type="button" class="bk-pill active" data-min="1" data-max="9">Satuan (1–9)</button>
+              <button type="button" class="bk-pill" data-min="10" data-max="99">Puluhan (10–99)</button>
+              <button type="button" class="bk-pill" data-min="100" data-max="999">Ratusan (100–999)</button>
+              <button type="button" class="bk-pill" data-min="1000" data-max="9999">Ribuan (1000+)</button>
+              <button type="button" class="bk-pill" data-custom="true">Kustom</button>
+            </div>
+            <div id="num1-custom-box" class="bk-custom-range hidden">
+              <input type="number" id="num1-min" placeholder="Min" value="11" min="1">
+              <span>sampai</span>
+              <input type="number" id="num1-max" placeholder="Max" value="25" min="1">
+            </div>
+          </div>
+
+          <!-- Pengaturan Angka Kedua -->
+          <div class="bk-control-group">
+            <label class="bk-label">Rentang Angka Kedua</label>
+            <div class="bk-pill-group" data-target="num2">
+              <button type="button" class="bk-pill active" data-min="1" data-max="9">Satuan (1–9)</button>
+              <button type="button" class="bk-pill" data-min="10" data-max="99">Puluhan (10–99)</button>
+              <button type="button" class="bk-pill" data-min="100" data-max="999">Ratusan (100–999)</button>
+              <button type="button" class="bk-pill" data-min="1000" data-max="9999">Ribuan (1000+)</button>
+              <button type="button" class="bk-pill" data-custom="true">Kustom</button>
+            </div>
+            <div id="num2-custom-box" class="bk-custom-range hidden">
+              <input type="number" id="num2-min" placeholder="Min" value="11" min="1">
+              <span>sampai</span>
+              <input type="number" id="num2-max" placeholder="Max" value="25" min="1">
+            </div>
+          </div>
+
+          <!-- Jenis Soal -->
+          <div class="bk-control-group">
+            <label class="bk-label">Jenis Soal</label>
+            <div class="bk-pill-group" id="question-type-group">
+              <button type="button" class="bk-pill active" data-val="plain">Soal Polos</button>
+              <button type="button" class="bk-pill" data-val="story">Soal Cerita</button>
+              <button type="button" class="bk-pill" data-val="mixed">Campuran</button>
+            </div>
+          </div>
+
+          <!-- Mode Jawaban -->
+          <div class="bk-control-group">
+            <label class="bk-label">Mode Jawaban</label>
+            <div class="bk-pill-group" id="answer-mode-group">
+              <button type="button" class="bk-pill active" data-val="essay">Ketik Jawaban</button>
+              <button type="button" class="bk-pill" data-val="mc">Pilihan Ganda</button>
+            </div>
+          </div>
+
+          <button type="button" id="bk-start-btn" class="bk-btn-primary">Mulai Latihan</button>
+        </div>
+
+        <!-- TAMPILAN 2: AREA LATIHAN -->
+        <div id="bk-practice-view" class="bk-view hidden">
+          <div class="bk-practice-top">
+            <span id="bk-mode-indicator" class="bk-badge-subtle">Mode: Soal Polos</span>
+            <button type="button" id="bk-back-btn" class="bk-btn-link">⚙ Ubah Pengaturan</button>
+          </div>
+
+          <div class="bk-question-card">
+            <p id="bk-question-text" class="bk-question-text"></p>
+        </div>
+
+        <!-- Area Input Essay -->
+        <div id="bk-essay-area" class="bk-answer-area">
+          <input type="number" id="bk-essay-input" class="bk-input-answer" placeholder="Ketik hasil perkalian di sini..." inputmode="numeric">
+          <button type="button" id="bk-check-btn" class="bk-btn-primary">Cek Jawaban</button>
+        </div>
+
+        <!-- Area Pilihan Ganda -->
+        <div id="bk-mc-area" class="bk-mc-grid hidden">
+        <!-- Opsi tombol akan di-generate lewat JS -->
+        </div>
+
+        <!-- Kotak Feedback & Petunjuk -->
+        <div id="bk-feedback-box" class="bk-feedback hidden">
+          <div id="bk-feedback-title" class="bk-feedback-title"></div>
+            <p id="bk-feedback-desc" class="bk-feedback-desc"></p>
+            <div id="bk-hint-box" class="bk-hint hidden"></div>
+          </div>
+
+          <button type="button" id="bk-next-btn" class="bk-btn-secondary hidden">Soal Berikutnya →</button>
+        </div>
+      </div>
+        
       </section>
     </main>
 
