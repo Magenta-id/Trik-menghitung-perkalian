@@ -170,18 +170,19 @@ img {
 /* Rumus */
 .rumus {
   max-width: 35rem;
-  margin: 2rem auto; /* Posisi di tengah laman dengan jarak atas-bawah */
+  width: 100%;
+  margin: 1.5rem auto;
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border: 1px solid #e2e8f0;
-  border-left: 4px solid #3b82f6; /* Aksen garis kiri modern */
+  border-left: 4px solid #3b82f6;
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
   font-family: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
 }
 
-/* Efek interaktif saat kursor berada di atas box */
 .rumus:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
@@ -191,8 +192,9 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
 }
+
 .rumus-badge {
   background-color: #dbeafe;
   color: #1e40af;
@@ -203,26 +205,53 @@ img {
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
 }
+
 .rumus-icon {
   font-size: 1.1rem;
 }
+
 .rumus-content {
   text-align: center;
-  font-size: 1.25rem;
+  /* Ukuran font responsif: minimal 0.9rem (di HP), ideal 3.2vw, maksimal 1.25rem (di laptop) */
+  font-size: clamp(0.9rem, 3.2vw, 1.25rem);
   font-weight: 600;
   color: #1e293b;
-  padding: 0.75rem 0;
+  /* Padding kiri-kanan ditambah agar teks tidak menempel ke garis putus-putus */
+  padding: 0.875rem 0.75rem;
   background-color: #ffffff;
   border-radius: 0.5rem;
   border: 1px dashed #cbd5e1;
   margin-bottom: 1rem;
+  /* Mencegah teks keluar kotak jika ada rumus yang sangat panjang */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
+
+/* Memastikan elemen MathJax di dalam .rumus-content ikut menyesuaikan ukuran font */
+.rumus-content .MathJax,
+.rumus-content mjx-container {
+  font-size: 100% !important;
+  max-width: 100%;
+}
+
 .rumus-footer {
   font-size: 0.875rem;
   color: #64748b;
   border-top: 1px solid #e2e8f0;
   padding-top: 0.75rem;
-  line-height: 1.4;
+  line-height: 1.5;
+}
+
+/* Penyesuaian khusus layar HP (lebar di bawah 480px) */
+@media (max-width: 480px) {
+  .rumus {
+    padding: 0.875rem 0.875rem;
+    margin: 1.25rem auto;
+  }
+  .rumus-content {
+    padding: 0.75rem 0.5rem;
+  }
 }
 
 /* Batas */
